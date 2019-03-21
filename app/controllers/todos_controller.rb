@@ -20,7 +20,7 @@ class TodosController < ApplicationController
     if @todo.save
       render json: @todo, status: :created, location: @todo
     else
-      render json: @todo.errors, status: :unprocessable_entity
+      render json: {status: 401, message: 'ログインしてください' }, status: 401
     end
   end
 
@@ -46,6 +46,6 @@ class TodosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def todo_params
-      params.fetch(:todo, {}).permiti(:title)
+      params.fetch(:todo, {}).permit(:title, :description, :status, :user_id)
     end
 end

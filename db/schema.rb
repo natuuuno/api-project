@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_21_021405) do
+ActiveRecord::Schema.define(version: 2019_03_21_045146) do
 
   create_table "todos", force: :cascade do |t|
     t.string "title"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2019_03_21_021405) do
     t.text "description"
     t.string "email"
     t.string "password"
+    t.string "token"
+    t.index ["token"], name: "index_users_on_token", unique: true
   end
 
 end
